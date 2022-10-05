@@ -12,8 +12,11 @@ export default function IPhoneScreen() {
   let [elapsedTime, setElapsedTime] = useState(0);
   let timerId = undefined;
 
+  const handleIsTimerRunningState = () => {
+    setIsTimerRunning(() => (isTimerRunning = !isTimerRunning));
+  };
+
   const handleRunTimer = (timestamp) => {
-    isTimerRunning = true;
     if (startTime === 0) startTime = timestamp;
     elapsedTime = Math.floor(timestamp - startTime);
     transformTime(elapsedTime);
@@ -24,6 +27,7 @@ export default function IPhoneScreen() {
       <MainTimer
         isTimerRunning={isTimerRunning}
         handleRunTimer={handleRunTimer}
+        handleIsTimerRunningState={handleIsTimerRunningState}
       />
       <LapsSection />
     </div>

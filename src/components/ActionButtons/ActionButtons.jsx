@@ -3,7 +3,11 @@
 
 import "./ActionButtons.css";
 
-export default function ActionButtons({ isTimerRunning, handleRunTimer }) {
+export default function ActionButtons({
+  isTimerRunning,
+  handleRunTimer,
+  handleIsTimerRunningState,
+}) {
   return (
     <div className="buttons-wrapper">
       <button className="buttons lap-reset-button">Lap</button>
@@ -11,7 +15,9 @@ export default function ActionButtons({ isTimerRunning, handleRunTimer }) {
         className={
           isTimerRunning ? "buttons stop-button" : "buttons start-button"
         }
-        onClick={() => handleRunTimer(performance.now())}
+        onClick={() => {
+          return handleRunTimer(performance.now()), handleIsTimerRunningState();
+        }}
       >
         {isTimerRunning ? "Stop" : "Start"}
       </button>

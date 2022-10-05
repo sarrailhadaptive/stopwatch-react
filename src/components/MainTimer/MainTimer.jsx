@@ -13,13 +13,18 @@ function DisplayTime() {
   );
 }
 
-export default function MainTimer({ isTimerRunning, handleRunTimer }) {
+export default function MainTimer({
+  isTimerRunning,
+  handleRunTimer,
+  handleIsTimerRunningState,
+}) {
   return (
     <div className="main-timer-section">
       <DisplayTime />
       <ActionButtons
         isTimerRunning={isTimerRunning}
         handleRunTimer={handleRunTimer}
+        handleIsTimerRunningState={handleIsTimerRunningState}
       />
     </div>
   );
