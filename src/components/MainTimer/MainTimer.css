@@ -1,0 +1,13 @@
+.main-timer-section {
+  background-color: black;
+  width: 331px;
+  height: 409px;
+  display: grid;
+  grid-template-rows: 1fr 150px;
+  align-items: end;
+}
+
+.main-timer-section h1 {
+  font-size: 70px;
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,25 @@
+.lap-table-section {
+  background-color: black;
+  width: 331px;
+  height: 296px;
+  overflow: auto;
+  /* HIDING SCROLLBAR STYLE IN IE AND SAFARI */
+  -ms-overflow-style: none;
+}
+
+table {
+  width: 100%;
+  padding: 10px 16px 0 16px;
+}
+
+tr:first-of-type {
+  border-top: solid 0.1px gray;
+}
+
+tr {
+  display: flex;
+  height: 34px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 0.1px gray;
+}

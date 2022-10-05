@@ -1,0 +1,26 @@
+.buttons-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 60px);
+  justify-content: space-between;
+  padding: 0 17px 10px 17px;
+}
+
+.buttons {
+  height: 65px;
+  width: 65px;
+  border-radius: 36px;
+  border: black double;
+  /* border: solid double; */
+}
+
+.lap-reset-button {
+  opacity: 0.5;
+  background-color: #3a3a3c;
+  color: #b5b5b9;
+}
+
+.start-stop-button {
+  opacity: 0.7;
+  background-color: #16472e;
+  color: #04de71;
+}
