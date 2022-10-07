@@ -1,6 +1,7 @@
 .buttons-wrapper {
   display: grid;
-  grid-template-columns: repeat(2, 60px);
+  background-color: black;
+  grid-template-columns: repeat(2, 65px);
   justify-content: space-between;
   padding: 0 17px 10px 17px;
 }
@@ -10,13 +11,24 @@
   width: 65px;
   border-radius: 36px;
   border: black double;
-  /* border: solid double; */
 }
 
 .lap-reset-button {
   opacity: 0.5;
   background-color: #3a3a3c;
   color: #b5b5b9;
+}
+
+.lap-active {
+  opacity: 1;
+  background-color: #3a3a3c;
+  color: #fff;
+}
+
+.reset-active {
+  opacity: 1;
+  background-color: #3a3a3c;
+  color: #fff;
 }
 
 .start-button {

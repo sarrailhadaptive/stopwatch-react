@@ -1,7 +1,9 @@
 export default function transformTime(elapsedTime) {
-  console.log(
-    `${Math.floor(elapsedTime / 60000)}:${Math.floor(
-      (elapsedTime / 1000) % 60
-    )}.${Math.floor((elapsedTime / 10) % 100)}`
-  );
+  return `${addPadStart(Math.floor(elapsedTime / 6000))}:${addPadStart(
+    Math.floor((elapsedTime / 100) % 60)
+  )}.${addPadStart(elapsedTime % 100)}`;
+}
+
+function addPadStart(time) {
+  return time.toString().padStart(2, "0");
 }
