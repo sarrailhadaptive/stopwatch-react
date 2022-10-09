@@ -6,33 +6,26 @@ export default function StartStopButton({
   setIsTimerRunning,
   elapsedTime,
   setElapsedTime,
-  startTime,
-  setStartTime,
+  startTimer,
+  setStartTimer,
 }) {
-  let [previousTime, setPreviousTime] = useState(0);
-  let [timerId, setTimerId] = useState(0);
-
-  function handleRunTimer(timestamp, startTime) {
-    startTime === 0
-      ? setStartTime((startTime = timestamp))
-      : setStartTime((startTime = timestamp - elapsedTime));
-    setIsTimerRunning((isTimerRunning = !isTimerRunning));
-    setElapsedTime((elapsedTime = Math.floor(timestamp - startTime)));
+  function handleRunTimer(startTimer) {
+    startTimer === 0
+      ? setStartTimer(startTimer)
+      : setStartTimer(startTimer - elapsedTime);
+    setIsTimerRunning(!isTimerRunning);
   }
 
   useEffect(() => {
     if (isTimerRunning) {
-      const runTimer = () => {
-        setElapsedTime(elapsedTime++);
-        setTimerId((timerId = setTimeout(runTimer, 10)));
-      };
-      setPreviousTime((previousTime = elapsedTime));
-      console.log(`Previous Time: ${elapsedTime}`);
-      runTimer();
-    } else {
-      clearTimeout(timerId);
+      const timerId = setInterval(() => {
+        const currentTime = Date.now();
+        setElapsedTime(currentTime - startTimer);
+      }, 10);
+      return () => clearInterval(timerId);
     }
   }, [isTimerRunning]);
+
   return (
     <button
       className={
@@ -40,8 +33,8 @@ export default function StartStopButton({
       }
       onClick={
         isTimerRunning
-          ? () => setIsTimerRunning((isTimerRunning = false))
-          : () => handleRunTimer(Date.now(), startTime)
+          ? () => setIsTimerRunning(false)
+          : () => handleRunTimer(Date.now())
       }
     >
       {isTimerRunning ? "Stop" : "Start"}

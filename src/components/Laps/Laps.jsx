@@ -6,26 +6,20 @@
 
 import "./Laps.css";
 import transformTime from "../../utils/formatting-utils";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
-export default function LapsSection({ elapsedTime }) {
+export default function LapsSection({ elapsedTime, lapNumber }) {
   return (
     <div className="lap-table-section">
-      <LapsTable elapsedTime={elapsedTime} />
+      <table>
+        <tbody>
+          <tr className="first-lap">
+            <td>Lap {lapNumber}</td>
+            <td>{transformTime(elapsedTime)}</td>
+          </tr>
+        </tbody>
+        {/* {insertNewLaps(elapsedTime)} */}
+      </table>
     </div>
-  );
-}
-
-// LapsTable
-function LapsTable({ elapsedTime }) {
-  return (
-    <table>
-      <tbody>
-        <tr>
-          <td>Lap 1</td>
-          <td>{transformTime(elapsedTime)}</td>
-        </tr>
-      </tbody>
-    </table>
   );
 }

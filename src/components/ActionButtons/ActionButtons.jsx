@@ -1,24 +1,32 @@
-// LapResetButton
-// StartStopButton
-
 import "./ActionButtons.css";
 import { useState, useEffect } from "react";
 import StartStopButton from "./StartStopButton";
 import LapResetButton from "./LapResetButton";
 
-export default function ActionButtons({ setElapsedTime, elapsedTime }) {
-  let [isTimerRunning, setIsTimerRunning] = useState(false);
-  let [startTime, setStartTime] = useState(0);
+export default function ActionButtons({
+  setElapsedTime,
+  elapsedTime,
+  lapNumber,
+  setLapNumber,
+}) {
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [startTimer, setStartTimer] = useState(0);
   return (
     <div className="buttons-wrapper">
-      <LapResetButton isTimerRunning={isTimerRunning} startTime={startTime} />
+      <LapResetButton
+        isTimerRunning={isTimerRunning}
+        startTimer={startTimer}
+        lapNumber={lapNumber}
+        setLapNumber={setLapNumber}
+        elapsedTime={elapsedTime}
+      />
       <StartStopButton
         isTimerRunning={isTimerRunning}
         setIsTimerRunning={setIsTimerRunning}
         elapsedTime={elapsedTime}
         setElapsedTime={setElapsedTime}
-        startTime={startTime}
-        setStartTime={setStartTime}
+        startTimer={startTimer}
+        setStartTimer={setStartTimer}
       />
     </div>
   );
