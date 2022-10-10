@@ -27,13 +27,11 @@ export default function LapsSection({
 
   function isFastestLap() {
     const minTimeLap = Math.min(...lapTimes);
-    console.log(minTimeLap);
     return minTimeLap;
   }
 
   function isSlowestLap() {
     const maxTimeLap = Math.max(...lapTimes);
-    console.log(maxTimeLap);
     return maxTimeLap;
   }
 
@@ -45,7 +43,10 @@ export default function LapsSection({
   const listLaps = lapRows
     .map((lap) => {
       return (
-        <tr key={lap.id} className={displayFastestOrSlowest()}>
+        <tr
+          key={lap.id}
+          className={lapNumber > 2 && displayFastestOrSlowest(lap.time)}
+        >
           <td>Lap {lap.id}</td>
           <td>{transformTime(lap.time)}</td>
         </tr>
