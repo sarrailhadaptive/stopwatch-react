@@ -5,19 +5,22 @@ import { useEffect } from "react";
 export default function LapsSection({ elapsedTime, lapNumber, lapTimes }) {
   let fastestLap = Infinity;
   let slowestLap = 0;
+  let newLapRow = "";
 
   function compareLapsSpeed(lapTime) {
-    if (lapTime < fastestLap) {
-      fastestLap = lapTime;
-      return "fastest-lap";
-    }
-    if (lapTime > slowestLap) {
-      slowestLap = lapTime;
-      return "slowest-lap";
+    if (lapNumber >= 3) {
+      if (lapTime < fastestLap) {
+        fastestLap = lapTime;
+        return "fastest-lap";
+      }
+      if (lapTime > slowestLap) {
+        slowestLap = lapTime;
+        return "slowest-lap";
+      }
     }
   }
 
-  function currentLapRow() {
+  function displayCurrentLapRow() {
     const firstLap = (
       <tr className="first-lap">
         <td>Lap {lapNumber}</td>
@@ -31,18 +34,16 @@ export default function LapsSection({ elapsedTime, lapNumber, lapTimes }) {
     return <tbody>{firstLap}</tbody>;
   }
 
-  function createLapRows() {
+  function createNewLapRow() {
     if (lapNumber >= 2) {
-      const newLapRow = lapTimes
+      newLapRow = lapTimes
         .map((currTime, currIndex, array) => {
+          const currentLapTime =
+            currIndex === 0 ? currTime : currTime - array[currIndex - 1];
           return (
-            <tr className={compareLapsSpeed(currTime - array[currIndex - 1])}>
+            <tr className={compareLapsSpeed(currentLapTime)}>
               <td>Lap {currIndex + 1}</td>
-              <td>
-                {transformTime(
-                  currIndex === 0 ? currTime : currTime - array[currIndex - 1]
-                )}
-              </td>
+              <td>{transformTime(currentLapTime)}</td>
             </tr>
           );
         })
@@ -52,14 +53,14 @@ export default function LapsSection({ elapsedTime, lapNumber, lapTimes }) {
   }
 
   useEffect(() => {
-    console.log(fastestLap);
+    console.log(newLapRow);
   }, [lapTimes]);
 
   return (
     <div className="lap-table-section">
       <table>
-        {currentLapRow()}
-        {createLapRows()}
+        {displayCurrentLapRow()}
+        {createNewLapRow()}
       </table>
     </div>
   );

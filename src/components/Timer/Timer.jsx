@@ -1,7 +1,6 @@
 // resetStopwatch
 
 import transformTime from "../../utils/formatting-utils.js";
-import { useEffect, useState } from "react";
 import "./Timer.css";
 
 export default function Timer({ elapsedTime }) {

@@ -19,8 +19,7 @@ export default function StartStopButton({
   useEffect(() => {
     if (isTimerRunning) {
       const timerId = setInterval(() => {
-        const currentTime = Date.now();
-        setElapsedTime(currentTime - startTimer);
+        setElapsedTime(Date.now() - startTimer);
       }, 10);
       return () => clearInterval(timerId);
     }
