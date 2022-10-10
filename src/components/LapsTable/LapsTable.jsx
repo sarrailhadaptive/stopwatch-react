@@ -1,24 +1,14 @@
 import "./LapsTable.css";
 import transformTime from "../../utils/formatting-utils";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
-export default function LapsSection({ elapsedTime, lapNumber, lapTimes }) {
-  let fastestLap = Infinity;
-  let slowestLap = 0;
-  let newLapRow = "";
-
-  function compareLapsSpeed(lapTime) {
-    if (lapNumber >= 3) {
-      if (lapTime < fastestLap) {
-        fastestLap = lapTime;
-        return "fastest-lap";
-      }
-      if (lapTime > slowestLap) {
-        slowestLap = lapTime;
-        return "slowest-lap";
-      }
-    }
-  }
+export default function LapsSection({
+  elapsedTime,
+  lapNumber,
+  lapRows,
+  setlapRows,
+}) {
+  const [lapTimes, setLapTimes] = useState([]);
 
   function displayCurrentLapRow() {
     const firstLap = (
@@ -26,7 +16,8 @@ export default function LapsSection({ elapsedTime, lapNumber, lapTimes }) {
         <td>Lap {lapNumber}</td>
         <td>
           {transformTime(
-            lapNumber < 2 ? elapsedTime : elapsedTime - lapTimes[lapNumber - 2]
+            elapsedTime -
+              lapTimes.reduce((prevLap, currLap) => prevLap + currLap, 0)
           )}
         </td>
       </tr>
@@ -34,33 +25,60 @@ export default function LapsSection({ elapsedTime, lapNumber, lapTimes }) {
     return <tbody>{firstLap}</tbody>;
   }
 
-  function createNewLapRow() {
-    if (lapNumber >= 2) {
-      newLapRow = lapTimes
-        .map((currTime, currIndex, array) => {
-          const currentLapTime =
-            currIndex === 0 ? currTime : currTime - array[currIndex - 1];
-          return (
-            <tr className={compareLapsSpeed(currentLapTime)}>
-              <td>Lap {currIndex + 1}</td>
-              <td>{transformTime(currentLapTime)}</td>
-            </tr>
-          );
-        })
-        .reverse();
-      return <tbody>{newLapRow}</tbody>;
-    }
+  function isFastestLap() {
+    const minTimeLap = Math.min(...lapTimes);
+    console.log(minTimeLap);
+    return minTimeLap;
+  }
+
+  function isSlowestLap() {
+    const maxTimeLap = Math.max(...lapTimes);
+    console.log(maxTimeLap);
+    return maxTimeLap;
+  }
+
+  function displayFastestOrSlowest(time) {
+    if (isSlowestLap() === time) return "slowest-lap";
+    if (isFastestLap() === time) return "fastest-lap";
+  }
+
+  const listLaps = lapRows
+    .map((lap) => {
+      return (
+        <tr key={lap.id} className={displayFastestOrSlowest()}>
+          <td>Lap {lap.id}</td>
+          <td>{transformTime(lap.time)}</td>
+        </tr>
+      );
+    })
+    .reverse();
+
+  function addNewLap() {
+    const newLapTime = lapTimes.reduce(
+      (prevLap, currLap) => prevLap - currLap,
+      elapsedTime
+    );
+    setLapTimes([...lapTimes, newLapTime]);
+    setlapRows([
+      ...lapRows,
+      {
+        id: lapNumber - 1,
+        time: newLapTime,
+      },
+    ]);
   }
 
   useEffect(() => {
-    console.log(newLapRow);
-  }, [lapTimes]);
+    if (lapNumber > 1) {
+      addNewLap();
+    }
+  }, [lapNumber]);
 
   return (
     <div className="lap-table-section">
       <table>
         {displayCurrentLapRow()}
-        {createNewLapRow()}
+        {lapNumber >= 2 && <tbody>{listLaps}</tbody>}
       </table>
     </div>
   );
