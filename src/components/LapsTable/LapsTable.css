@@ -25,3 +25,11 @@ tr {
   font-variant-numeric: tabular-nums;
   color: #fff;
 }
+
+.fastest-lap {
+  color: #04de71;
+}
+
+.slowest-lap {
+  color: #ff3b30;
+}

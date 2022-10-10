@@ -1,4 +1,4 @@
-import "./ActionButtons.css";
+import "../ActionButtons.css";
 import { useState, useEffect } from "react";
 
 export default function LapResetButton({
@@ -7,11 +7,13 @@ export default function LapResetButton({
   lapNumber,
   setLapNumber,
   elapsedTime,
+  lapTimes,
+  setLapTimes,
 }) {
-  function createNewLap(elapsedTime, lapNumber) {
-    // We need to create an object that has an id and that saves the currentElapsedTime
-  }
-  useEffect(() => {});
+  useEffect(() => {
+    if (lapNumber >= 2) setLapTimes([...lapTimes, elapsedTime]);
+  }, [lapNumber]);
+
   return (
     <button
       className={isTimerRunning ? "buttons lap-active" : "buttons reset-active"}

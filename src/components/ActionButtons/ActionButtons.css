@@ -10,7 +10,7 @@
   height: 65px;
   width: 65px;
   border-radius: 36px;
-  border: black double;
+  border: 4px double black;
 }
 
 .lap-reset-button {
