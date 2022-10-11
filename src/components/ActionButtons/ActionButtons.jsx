@@ -8,6 +8,8 @@ export default function ActionButtons({
   elapsedTime,
   lapNumber,
   setLapNumber,
+  setLapTimes,
+  setLapRows,
 }) {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [startTimer, setStartTimer] = useState(0);
@@ -19,6 +21,11 @@ export default function ActionButtons({
         lapNumber={lapNumber}
         setLapNumber={setLapNumber}
         elapsedTime={elapsedTime}
+        setIsTimerRunning={setIsTimerRunning}
+        setStartTimer={setStartTimer}
+        setElapsedTime={setElapsedTime}
+        setLapTimes={setLapTimes}
+        setLapRows={setLapRows}
       />
       <StartStopButton
         isTimerRunning={isTimerRunning}

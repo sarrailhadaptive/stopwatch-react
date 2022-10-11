@@ -9,7 +9,8 @@ import "./App.css";
 export default function IPhoneScreen() {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [lapNumber, setLapNumber] = useState(1);
-  const [lapRows, setlapRows] = useState([]);
+  const [lapRows, setLapRows] = useState([]);
+  const [lapTimes, setLapTimes] = useState([]);
 
   return (
     <div>
@@ -19,13 +20,16 @@ export default function IPhoneScreen() {
         elapsedTime={elapsedTime}
         lapNumber={lapNumber}
         setLapNumber={setLapNumber}
-        lapRows={lapRows}
+        setLapTimes={setLapTimes}
+        setLapRows={setLapRows}
       />
       <LapsTable
         elapsedTime={elapsedTime}
         lapNumber={lapNumber}
         lapRows={lapRows}
-        setlapRows={setlapRows}
+        setLapRows={setLapRows}
+        lapTimes={lapTimes}
+        setLapTimes={setLapTimes}
       />
     </div>
   );

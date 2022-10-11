@@ -6,10 +6,10 @@ export default function LapsSection({
   elapsedTime,
   lapNumber,
   lapRows,
-  setlapRows,
+  setLapRows,
+  lapTimes,
+  setLapTimes,
 }) {
-  const [lapTimes, setLapTimes] = useState([]);
-
   function displayCurrentLapRow() {
     const firstLap = (
       <tr className="first-lap">
@@ -60,7 +60,7 @@ export default function LapsSection({
       elapsedTime
     );
     setLapTimes([...lapTimes, newLapTime]);
-    setlapRows([
+    setLapRows([
       ...lapRows,
       {
         id: lapNumber - 1,
