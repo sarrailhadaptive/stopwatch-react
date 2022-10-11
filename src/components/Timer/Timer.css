@@ -1,6 +1,6 @@
 .main-timer-section {
   background-color: black;
-  width: 331px;
+  width: var(--screen-width);
   height: 334px;
   display: grid;
   grid-template-rows: 1fr;

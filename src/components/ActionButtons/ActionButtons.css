@@ -15,24 +15,23 @@
 
 .lap-reset-button {
   opacity: 0.5;
-  background-color: #3a3a3c;
+  background-color: var(--lap-reset-bg-color);
   color: #b5b5b9;
 }
 
 .lap-active {
   opacity: 1;
-  background-color: #3a3a3c;
+  background-color: var(--lap-reset-bg-color);
   color: #fff;
 }
 
 .reset-active {
   opacity: 1;
-  background-color: #3a3a3c;
+  background-color: var(--lap-reset-bg-color);
   color: #fff;
 }
 
 .start-button {
-  opacity: 0.7;
   background-color: #16472e;
   color: #04de71;
 }

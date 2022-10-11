@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "../ActionButtons.css";
 
 export default function LapResetButton({
@@ -20,9 +21,15 @@ export default function LapResetButton({
     setLapRows([]);
   }
 
+  function handleButtonStyles() {
+    if (timestamp === 0) return "buttons lap-reset-button";
+    if (isTimerRunning) return "buttons lap-active";
+    if (!isTimerRunning) return "buttons reset-active";
+  }
+
   return (
     <button
-      className={isTimerRunning ? "buttons lap-active" : "buttons reset-active"}
+      className={handleButtonStyles()}
       onClick={() =>
         isTimerRunning ? setLapNumber(++lapNumber) : resetStopwatch()
       }
