@@ -36,20 +36,21 @@ export default function LapsSection({
   }
 
   function displayFastestAndSlowestLap(time) {
-    if (findHighestLapTime() === time) return "slowest-lap";
-    if (findSmallestLapTime() === time) return "fastest-lap";
+    if (lapNumber > 2) {
+      if (findHighestLapTime() === time) return "slowest-lap";
+      if (findSmallestLapTime() === time) return "fastest-lap";
+    }
   }
 
   const listLaps = lapRows
     .map((lap) => {
       return (
-        <tr
-          key={lap.id}
-          className={lapNumber > 2 && displayFastestAndSlowestLap(lap.time)}
-        >
-          <td>Lap {lap.id}</td>
-          <td>{transformTime(lap.time)}</td>
-        </tr>
+        <tbody key={lap.id}>
+          <tr className={displayFastestAndSlowestLap(lap.time)}>
+            <td>Lap {lap.id}</td>
+            <td>{transformTime(lap.time)}</td>
+          </tr>
+        </tbody>
       );
     })
     .reverse();
@@ -79,7 +80,7 @@ export default function LapsSection({
     <div className="lap-table-section">
       <table>
         {displayCurrentLapRow()}
-        {lapNumber >= 2 && <tbody>{listLaps}</tbody>}
+        {lapNumber >= 2 && listLaps}
       </table>
     </div>
   );
