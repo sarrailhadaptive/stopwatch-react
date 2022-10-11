@@ -12,17 +12,17 @@ export default function ActionButtons({
   setLapRows,
 }) {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
-  const [startTimer, setStartTimer] = useState(0);
+  const [timestamp, setTimestamp] = useState(0);
   return (
     <div className="buttons-wrapper">
       <LapResetButton
         isTimerRunning={isTimerRunning}
-        startTimer={startTimer}
+        timestamp={timestamp}
         lapNumber={lapNumber}
         setLapNumber={setLapNumber}
         elapsedTime={elapsedTime}
         setIsTimerRunning={setIsTimerRunning}
-        setStartTimer={setStartTimer}
+        setTimestamp={setTimestamp}
         setElapsedTime={setElapsedTime}
         setLapTimes={setLapTimes}
         setLapRows={setLapRows}
@@ -32,8 +32,8 @@ export default function ActionButtons({
         setIsTimerRunning={setIsTimerRunning}
         elapsedTime={elapsedTime}
         setElapsedTime={setElapsedTime}
-        startTimer={startTimer}
-        setStartTimer={setStartTimer}
+        timestamp={timestamp}
+        setTimestamp={setTimestamp}
       />
     </div>
   );

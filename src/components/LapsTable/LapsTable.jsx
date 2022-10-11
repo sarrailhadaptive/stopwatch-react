@@ -1,6 +1,6 @@
 import "./LapsTable.css";
 import transformTime from "../../utils/formatting-utils";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 export default function LapsSection({
   elapsedTime,
@@ -25,19 +25,19 @@ export default function LapsSection({
     return <tbody>{firstLap}</tbody>;
   }
 
-  function isFastestLap() {
+  function findSmallestLapTime() {
     const minTimeLap = Math.min(...lapTimes);
     return minTimeLap;
   }
 
-  function isSlowestLap() {
+  function findHighestLapTime() {
     const maxTimeLap = Math.max(...lapTimes);
     return maxTimeLap;
   }
 
-  function displayFastestOrSlowest(time) {
-    if (isSlowestLap() === time) return "slowest-lap";
-    if (isFastestLap() === time) return "fastest-lap";
+  function displayFastestAndSlowestLap(time) {
+    if (findHighestLapTime() === time) return "slowest-lap";
+    if (findSmallestLapTime() === time) return "fastest-lap";
   }
 
   const listLaps = lapRows
@@ -45,7 +45,7 @@ export default function LapsSection({
       return (
         <tr
           key={lap.id}
-          className={lapNumber > 2 && displayFastestOrSlowest(lap.time)}
+          className={lapNumber > 2 && displayFastestAndSlowestLap(lap.time)}
         >
           <td>Lap {lap.id}</td>
           <td>{transformTime(lap.time)}</td>

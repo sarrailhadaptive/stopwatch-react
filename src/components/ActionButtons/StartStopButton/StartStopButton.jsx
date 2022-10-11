@@ -1,25 +1,25 @@
 import "../ActionButtons.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 export default function StartStopButton({
   isTimerRunning,
   setIsTimerRunning,
   elapsedTime,
   setElapsedTime,
-  startTimer,
-  setStartTimer,
+  timestamp,
+  setTimestamp,
 }) {
-  function handleRunTimer(startTimer) {
-    startTimer === 0
-      ? setStartTimer(startTimer)
-      : setStartTimer(startTimer - elapsedTime);
+  function runTimer(timestamp) {
+    timestamp === 0
+      ? setTimestamp(timestamp)
+      : setTimestamp(timestamp - elapsedTime);
     setIsTimerRunning(!isTimerRunning);
   }
 
   useEffect(() => {
     if (isTimerRunning) {
       const timerId = setInterval(() => {
-        setElapsedTime(Date.now() - startTimer);
+        setElapsedTime(Date.now() - timestamp);
       }, 10);
       return () => clearInterval(timerId);
     }
@@ -33,7 +33,7 @@ export default function StartStopButton({
       onClick={
         isTimerRunning
           ? () => setIsTimerRunning(false)
-          : () => handleRunTimer(Date.now())
+          : () => runTimer(Date.now())
       }
     >
       {isTimerRunning ? "Stop" : "Start"}

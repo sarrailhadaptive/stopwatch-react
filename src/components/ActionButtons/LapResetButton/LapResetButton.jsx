@@ -2,11 +2,11 @@ import "../ActionButtons.css";
 
 export default function LapResetButton({
   isTimerRunning,
-  startTimer,
+  timestamp,
   lapNumber,
   setLapNumber,
   setIsTimerRunning,
-  setStartTimer,
+  setTimestamp,
   setElapsedTime,
   setLapTimes,
   setLapRows,
@@ -14,7 +14,7 @@ export default function LapResetButton({
   function resetStopwatch() {
     setLapNumber(1);
     setIsTimerRunning(false);
-    setStartTimer(0);
+    setTimestamp(0);
     setElapsedTime(0);
     setLapTimes([]);
     setLapRows([]);
@@ -27,7 +27,7 @@ export default function LapResetButton({
         isTimerRunning ? setLapNumber(++lapNumber) : resetStopwatch()
       }
     >
-      {isTimerRunning || startTimer === 0 ? "Lap" : "Reset"}
+      {isTimerRunning || timestamp === 0 ? "Lap" : "Reset"}
     </button>
   );
 }
