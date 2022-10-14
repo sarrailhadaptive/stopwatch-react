@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useReducer } from "react";
 import Timer from "./components/Timer/Timer.jsx";
 import ActionButtons from "./components/ActionButtons/ActionButtons.jsx";
 import LapsTable from "./components/LapsTable/LapsTable.jsx";

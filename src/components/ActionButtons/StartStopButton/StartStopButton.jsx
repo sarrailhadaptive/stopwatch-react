@@ -1,5 +1,5 @@
 import "../ActionButtons.css";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 
 export default function StartStopButton({
   isTimerRunning,
