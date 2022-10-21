@@ -1,16 +1,16 @@
-import React, { useState, useReducer } from "react";
-import Timer from "./components/Timer/Timer.jsx";
-import ActionButtons from "./components/ActionButtons/ActionButtons.jsx";
-import LapsTable from "./components/LapsTable/LapsTable.jsx";
-import "./App.css";
+import React, { useState, useReducer } from 'react'
+import Timer from './components/Timer/Timer.jsx'
+import ActionButtons from './components/ActionButtons/ActionButtons.jsx'
+import LapsTable from './components/LapsTable/LapsTable.jsx'
+import './App.css'
 
 // ------------------------------------- //
 
 export default function IPhoneScreen() {
-  const [elapsedTime, setElapsedTime] = useState(0);
-  const [lapNumber, setLapNumber] = useState(1);
-  const [lapRows, setLapRows] = useState([]);
-  const [lapTimes, setLapTimes] = useState([]);
+  const [elapsedTime, setElapsedTime] = useState(0)
+  const [lapNumber, setLapNumber] = useState(1)
+  const [lapRows, setLapRows] = useState([])
+  const [lapTimes, setLapTimes] = useState([])
 
   return (
     <div>
@@ -32,5 +32,5 @@ export default function IPhoneScreen() {
         setLapTimes={setLapTimes}
       />
     </div>
-  );
+  )
 }

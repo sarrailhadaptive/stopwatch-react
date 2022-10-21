@@ -1,7 +1,7 @@
-import "./ActionButtons.css";
-import { useState } from "react";
-import StartStopButton from "./StartStopButton/StartStopButton.jsx";
-import LapResetButton from "./LapResetButton/LapResetButton.jsx";
+import './ActionButtons.css'
+import { useState } from 'react'
+import StartStopButton from './StartStopButton/StartStopButton.jsx'
+import LapResetButton from './LapResetButton/LapResetButton.jsx'
 
 export default function ActionButtons({
   setElapsedTime,
@@ -11,8 +11,8 @@ export default function ActionButtons({
   setLapTimes,
   setLapRows,
 }) {
-  const [isTimerRunning, setIsTimerRunning] = useState(false);
-  const [timestamp, setTimestamp] = useState(0);
+  const [isTimerRunning, setIsTimerRunning] = useState(false)
+  const [timestamp, setTimestamp] = useState(0)
   return (
     <div className="buttons-wrapper">
       <LapResetButton
@@ -36,5 +36,5 @@ export default function ActionButtons({
         setTimestamp={setTimestamp}
       />
     </div>
-  );
+  )
 }

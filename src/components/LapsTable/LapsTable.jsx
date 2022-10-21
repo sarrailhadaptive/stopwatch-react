@@ -1,6 +1,6 @@
-import "./LapsTable.css";
-import transformTime from "../../utils/formatting-utils";
-import { useEffect } from "react";
+import './LapsTable.css'
+import transformTime from '../../utils/formatting-utils'
+import { useEffect } from 'react'
 
 export default function LapsSection({
   elapsedTime,
@@ -21,29 +21,29 @@ export default function LapsSection({
           )}
         </td>
       </tr>
-    );
-    return <tbody>{firstLap}</tbody>;
+    )
+    return <tbody>{firstLap}</tbody>
   }
 
   function findSmallestLapTime() {
-    const minTimeLap = Math.min(...lapTimes);
-    return minTimeLap;
+    const minTimeLap = Math.min(...lapTimes)
+    return minTimeLap
   }
 
   function findHighestLapTime() {
-    const maxTimeLap = Math.max(...lapTimes);
-    return maxTimeLap;
+    const maxTimeLap = Math.max(...lapTimes)
+    return maxTimeLap
   }
 
   function displayFastestAndSlowestLap(time) {
     if (lapNumber > 2) {
-      if (findHighestLapTime() === time) return "slowest-lap";
-      if (findSmallestLapTime() === time) return "fastest-lap";
+      if (findHighestLapTime() === time) return 'slowest-lap'
+      if (findSmallestLapTime() === time) return 'fastest-lap'
     }
   }
 
   const listLaps = lapRows
-    .map((lap) => {
+    .map(lap => {
       return (
         <tbody key={lap.id}>
           <tr className={displayFastestAndSlowestLap(lap.time)}>
@@ -51,30 +51,30 @@ export default function LapsSection({
             <td>{transformTime(lap.time)}</td>
           </tr>
         </tbody>
-      );
+      )
     })
-    .reverse();
+    .reverse()
 
   function addNewLap() {
     const newLapTime = lapTimes.reduce(
       (prevLap, currLap) => prevLap - currLap,
       elapsedTime
-    );
-    setLapTimes([...lapTimes, newLapTime]);
+    )
+    setLapTimes([...lapTimes, newLapTime])
     setLapRows([
       ...lapRows,
       {
         id: lapNumber - 1,
         time: newLapTime,
       },
-    ]);
+    ])
   }
 
   useEffect(() => {
     if (lapNumber > 1) {
-      addNewLap();
+      addNewLap()
     }
-  }, [lapNumber]);
+  }, [lapNumber])
 
   return (
     <div className="lap-table-section">
@@ -83,5 +83,5 @@ export default function LapsSection({
         {lapNumber >= 2 && listLaps}
       </table>
     </div>
-  );
+  )
 }

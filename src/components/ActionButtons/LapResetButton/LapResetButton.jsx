@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import "../ActionButtons.css";
+import { useEffect } from 'react'
+import '../ActionButtons.css'
 
 export default function LapResetButton({
   isTimerRunning,
@@ -13,18 +13,18 @@ export default function LapResetButton({
   setLapRows,
 }) {
   function resetStopwatch() {
-    setLapNumber(1);
-    setIsTimerRunning(false);
-    setTimestamp(0);
-    setElapsedTime(0);
-    setLapTimes([]);
-    setLapRows([]);
+    setLapNumber(1)
+    setIsTimerRunning(false)
+    setTimestamp(0)
+    setElapsedTime(0)
+    setLapTimes([])
+    setLapRows([])
   }
 
   function handleButtonStyles() {
-    if (timestamp === 0) return "buttons lap-reset-button";
-    if (isTimerRunning) return "buttons lap-active";
-    if (!isTimerRunning) return "buttons reset-active";
+    if (timestamp === 0) return 'buttons lap-reset-button'
+    if (isTimerRunning) return 'buttons lap-active'
+    if (!isTimerRunning) return 'buttons reset-active'
   }
 
   return (
@@ -34,7 +34,7 @@ export default function LapResetButton({
         isTimerRunning ? setLapNumber(++lapNumber) : resetStopwatch()
       }
     >
-      {isTimerRunning || timestamp === 0 ? "Lap" : "Reset"}
+      {isTimerRunning || timestamp === 0 ? 'Lap' : 'Reset'}
     </button>
-  );
+  )
 }
